@@ -19,4 +19,5 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
+      - run: ./gradlew :dependencies
       - run: ./gradlew build
