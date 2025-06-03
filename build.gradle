@@ -7,15 +7,6 @@ buildscript {
 		// maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 		gradlePluginPortal()
 	}
-
-	dependencies {
-		classpath 'org.anarres.gradle:gradle-stdproject-plugin:1.0.10'
-	}
-}
-
-
-apply plugin: 'org.anarres.stdproject'
-stdproject {
 }
 
 subprojects {
@@ -38,35 +29,32 @@ subprojects {
 	sourceCompatibility = 1.7
 }
 
-version = '1.1.1'
-
-project(':jarjar-testdata') {
-	dependencies {
-		compile 'com.google.guava:guava:17.0'
-	}
-
-	for (int i = 0; i < 4; i++) {
-		String name = "jar$i";
-		Task t = task(name, type: Jar) {
-			classifier = name
-			from(sourceSets.main.output) {
-				include "**/pkg$i/**";
-			}
-		}
-
-		artifacts {
-			archives t
-		}
-	}
-
-	uploadArchives.enabled = false
-}
+//project(':jarjar-testdata') {
+//	dependencies {
+//		compile 'com.google.guava:guava:17.0'
+//	}
+//
+//	for (int i = 0; i < 4; i++) {
+//		String name = "jar$i";
+//		Task t = task(name, type: Jar) {
+//			classifier = name
+//			from(sourceSets.main.output) {
+//				include "**/pkg$i/**";
+//			}
+//		}
+//
+//		artifacts {
+//			archives t
+//		}
+//	}
+//
+//	uploadArchives.enabled = false
+//}
 
 project(':jarjar-core') {
 	dependencies {
 		compile 'org.ow2.asm:asm-commons:8.0.1'
 		compile 'org.ow2.asm:asm-util:8.0.1'
-		// compile 'org.ow2.asm:asm-commons:4.0'
 
 		// testCompile project(':jarjar-testdata')
 	}
